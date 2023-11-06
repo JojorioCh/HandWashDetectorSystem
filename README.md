@@ -5,9 +5,7 @@ Hand wash Detection System with RaspberryPi Zero using IR Sensor
 
 - [Demo](#demo)
 - [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+- [Hardware Used](#hardware_used)
 - [License](#license)
 
 ## Demo
@@ -21,7 +19,7 @@ That's how the Application looks:
 
 Detect People whom wash their Hands with Duration & DateTime then Transmit the Data into into Real-Time Database using [Firebase](https://console.firebase.google.com/u/0/project/database-of-hwd-durations/database/database-of-hwd-durations-default-rtdb/data), then sent to the GUI Application instantly
 
-### Hardware used:
+## Hardware used:
 - Raspberry Pi Zero v1.1
 - IR Sensor
 - Raspberry Camera v1.3
