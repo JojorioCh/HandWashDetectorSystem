@@ -1,8 +1,5 @@
 # HandWashDetectorSystem
-
-# Project Title
-
-A brief description of your project.
+Hand wash Detection System with RaspberryPi Zero using IR Sensor, Detect People whom wash their Hands with Duration & DateTime then Transmit the Data into into Real-Time Database using [Firebase](https://console.firebase.google.com/u/0/project/database-of-hwd-durations/database/database-of-hwd-durations-default-rtdb/data), then sent to the GUI Application instantly
 
 ## Table of Contents
 
@@ -17,7 +14,7 @@ A brief description of your project.
 
 You can watch a demo of the project by clicking the link below:
 
-[![Watch the video](https://example.com/path/to/your/video-thumbnail.png)](https://example.com/path/to/your/hosted-video.mp4)
+[![Watch the video]([https://example.com/path/to/your/video-thumbnail.png](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png))](https://example.com/path/to/your/hosted-video.mp4)
 
 Click the image above to watch the demo video.
 
