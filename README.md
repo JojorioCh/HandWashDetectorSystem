@@ -14,7 +14,7 @@ Hand wash Detection System with RaspberryPi Zero using IR Sensor, Detect People 
 
 You can watch a demo of the project by clicking the link below:
 
-[![Watch the video]([https://example.com/path/to/your/video-thumbnail.png](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png))](https://example.com/path/to/your/hosted-video.mp4)
+[![Watch the video](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png)](https://example.com/path/to/your/hosted-video.mp4)
 
 Click the image above to watch the demo video.
 
