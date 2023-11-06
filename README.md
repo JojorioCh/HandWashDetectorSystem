@@ -16,7 +16,6 @@ That's how the Application looks:
 
 [![Watch the video](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png)]()
 
-Click the image above to watch the demo video.
 
 ## Description
 
