@@ -14,7 +14,7 @@ Hand wash Detection System with RaspberryPi Zero using IR Sensor
 
 That's how the Application looks:
 
-[[](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png)]
+[[!](https://github.com/OmarMed21/HandWashDetectorSystem/blob/main/essentials/image.png)]()
 
 Click the image above to watch the demo video.
 
