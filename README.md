@@ -5,7 +5,7 @@ Hand wash Detection System with RaspberryPi Zero using IR Sensor
 
 - [Demo](#demo)
 - [Description](#description)
-- [Hardware Used](#hardware_used)
+- [Hardware Used](#hardware-used)
 - [License](#license)
 
 ## Demo
