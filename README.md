@@ -27,18 +27,6 @@ Detect People whom wash their Hands with Duration & DateTime then Transmit the D
 - Raspberry Camera v1.3
 - Extra LED 
 
-## Installation
-
-Explain how to install your project or its dependencies if needed.
-
-## Usage
-
-Provide instructions on how to use your project.
-
-## Contributing
-
-Explain how others can contribute to your project if it's open-source.
-
 ## License
 
-Specify the license under which your project is distributed.
+TechTrade Agency original Files
