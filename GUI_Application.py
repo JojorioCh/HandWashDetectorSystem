@@ -1,8 +1,9 @@
 import sys
 import pandas as pd
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTableWidget, QTableWidgetItem, QPushButton, QLineEdit, QLabel, QSlider
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTableWidget, QTableWidgetItem, QPushButton, QLineEdit, QLabel, QSlider, QComboBox, QTextEdit
 from PyQt5.QtGui import QIcon
 from PyQt5.QtGui import QPalette, QColor, QFont
+from PyQt5.QtCore import Qt
 import firebase_admin
 from firebase_admin import credentials, db
 import seaborn as sns
@@ -70,8 +71,8 @@ class DataFrameViewer(QMainWindow):
         self.plot_button = QPushButton("Plot your Data to See The Analysis", self)
         self.layout.addWidget(self.plot_button)
         self.plot_button.clicked.connect(self.plot_custom)
-        self.plot_button.setStyleSheet("QPushButton { background-color: red; color: yellow; font-weight: bold;}"
-                                        "QPushButton:hover { background-color: darkred; }")
+        self.plot_button.setStyleSheet("QPushButton { background-color: gray; color: yellow; font-weight: bold;}"
+                                        "QPushButton:hover { background-color: darkgray; }")
 
         # Set the range slider values and labels
         self.slider.setMinimum(0)
@@ -84,19 +85,36 @@ class DataFrameViewer(QMainWindow):
         self.search_entry = QLineEdit(self)
         self.search_entry.setPlaceholderText("Search...")
         self.layout.addWidget(self.search_entry)
-        self.search_entry.setStyleSheet("background-color: white; color: green; font-weight:bold;")
+        self.search_entry.setStyleSheet("background-color: litegray; color: yellow; font-weight:bold;")
 
         self.search_button = QPushButton("Search (e.g. search for time 21:58)", self)
         self.search_button.clicked.connect(self.search)
         self.layout.addWidget(self.search_button)
-        self.search_button.setStyleSheet("QPushButton { background-color: red; color: yellow; font-weight: bold;}"
-                                        "QPushButton:hover { background-color: darkred; }")
+        self.search_button.setStyleSheet("QPushButton { background-color: gray; color: yellow; font-weight: bold;}"
+                                        "QPushButton:hover { background-color: darkgray; }")
 
         self.reset_button = QPushButton("Reset (reset the table as in the beginning form)", self)
         self.reset_button.clicked.connect(self.reset_data)
         self.layout.addWidget(self.reset_button)
-        self.reset_button.setStyleSheet("QPushButton { background-color: red; color: yellow; font-weight: bold;}"
-                                        "QPushButton:hover { background-color: darkred; }")
+        self.reset_button.setStyleSheet("QPushButton { background-color: gray; color: yellow; font-weight: bold;}"
+                                        "QPushButton:hover { background-color: darkgray; }")
+        
+        ################
+        # Create a QComboBox for column selection
+        self.column_dropdown = QComboBox()
+        self.column_dropdown.setPlaceholderText("Choose Between Dates")
+        self.layout.addWidget(self.column_dropdown)
+        
+        # Populate the dropdown menu with DataFrame column names
+        self.column_dropdown.addItems(self.dataframe.columns[1:])
+        
+        # Create a QTextEdit widget to display the DataFrame of the selected column
+        self.column_values_textedit = QTextEdit()
+        self.layout.addWidget(self.column_values_textedit)
+
+        # Connect the column selection to the display function
+        self.column_dropdown.currentIndexChanged.connect(self.display_column_as_dataframe)
+        #######################
 
          # Set the background color of the central widget
         self.central_widget.setStyleSheet("background-color: darkgray")
@@ -115,15 +133,15 @@ class DataFrameViewer(QMainWindow):
             item = QTableWidgetItem(header)
             self.table.setHorizontalHeaderItem(col, item)
         # Apply custom CSS style to change header background color
-        self.table.horizontalHeader().setStyleSheet("color: darkblue; font-weight: bold;")
+        self.table.horizontalHeader().setStyleSheet("color: black; font-weight: bold;")
 
         for row in range(len(self.dataframe)):
             for col in range(len(self.dataframe.columns)):
                 item = QTableWidgetItem(str(self.dataframe.iloc[row, col]))  
-                item.setBackground(QColor(255, 0, 0))  # Set the background color to red
+                item.setBackground(QColor(169, 169, 169))  # Set the background color to red
                 font = QFont()
                 font.setBold(True)  # Make the font bold
-                font_color = QColor(0, 255, 0)  # Set font color to red
+                font_color = QColor(255, 255, 0)  # Set font color to red
                 item.setFont(font)
                 item.setForeground(font_color)
                 self.table.setItem(row, col, item)
@@ -150,6 +168,12 @@ class DataFrameViewer(QMainWindow):
         for row in range(len(self.filtered_dataframe)):
             for col in range(len(self.filtered_dataframe.columns)):
                 item = QTableWidgetItem(str(self.filtered_dataframe.iloc[row, col]))
+                item.setBackground(QColor(169, 169, 169))  # Set the background color to red
+                font = QFont()
+                font.setBold(True)  # Make the font bold
+                font_color = QColor(255, 255, 0)  # Set font color to red
+                item.setFont(font)
+                item.setForeground(font_color)
                 self.table.setItem(row, col, item)
     
     def update_range_label(self):
@@ -169,6 +193,16 @@ class DataFrameViewer(QMainWindow):
         plt.ylabel("How much it appears")
         plt.show()
         self.canvas.draw()
+
+    def display_column_as_dataframe(self):
+        selected_column = self.column_dropdown.currentText()
+
+        # Create a new DataFrame containing the selected column
+        selected_column_dataframe = pd.DataFrame(self.dataframe[["Time", selected_column]])
+
+        # Display the DataFrame in the QTextEdit widget
+        self.column_values_textedit.setPlainText(selected_column_dataframe.to_string())
+
 
 if __name__ == "__main__":
     df = GetDataFromFirebase()
