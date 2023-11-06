@@ -38,7 +38,10 @@ class DataFrameViewer(QMainWindow):
     def __init__(self, dataframe):
         super().__init__()
 
-        self.dataframe = dataframe
+        self.dataframe = dataframe.copy()
+        self.dataframe_plot = dataframe.copy()
+
+        self.dataframe.fillna("No Detection happended this Time", inplace=True)
         self.filtered_dataframe = dataframe
 
         self.setWindowTitle("Database of Recorded Detections of Hand Washing")
@@ -181,7 +184,7 @@ class DataFrameViewer(QMainWindow):
         self.range_label.setText(f"Selected Number of Days to be shown: {selected_range} Day(s), starting from {self.dataframe.columns[1]}")
 
     def plot_custom(self):
-        df = self.dataframe
+        df = self.dataframe_plot
         df_new = df.groupby("Time").sum()
         range = self.slider.value()
         if range != 0 :
