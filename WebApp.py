@@ -17,7 +17,7 @@ search_button = st.button("Search")
 if search_button:
     if column_to_search in df.columns:
         st.subheader(f"Search Results for {column_to_search}:")
-        st.dataframe(database[["Time", column_to_search]].reset_index(drop='index'))
+        st.dataframe(database[["Time", column_to_search]].dropna().reset_index(drop='index'))
     else:
         st.warning(f"Column '{column_to_search}' not found in the DataFrame.")
 
