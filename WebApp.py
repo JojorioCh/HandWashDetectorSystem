@@ -5,7 +5,7 @@ st.title("Database of Handwashing Detection System")
 df = database.reset_index(drop='index')
 
 # Display the DataFrame
-# st.dataframe(df)
+st.dataframe(df)
 
 # Add a text input for column selection
 column_to_search = st.selectbox("Select a column to search:", database.columns[1:])
