@@ -25,4 +25,4 @@ def GetDataFromFirebase(JSON_DB_File:str="database-of-hwd-durations-firebase-adm
     df.sort_values(by='Time', inplace=True)
     return df
 
-database = GetDataFromFirebase().fillna("No Detection happended this Time")
+database = GetDataFromFirebase()#.fillna("No Detection happended this Time")
