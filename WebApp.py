@@ -1,10 +1,25 @@
 import streamlit as st
 from databaseHWD import *
-import sys
 import os
+import sys
 
 def restart_streamlit():
     os.execv(sys.executable, ['python'] + sys.argv)
+
+st.title("Refresh Button")
+# Reboot button
+
+# Caution message in red
+caution_message = """
+    <p style='color:red; font-size:20px;'>
+        <strong>Caution:</strong> You need to refresh the App every time you use it
+    </p>
+"""
+st.markdown(caution_message, unsafe_allow_html=True)
+
+if st.button("Refresh"):
+    st.write("Refreshing...")
+    restart_streamlit()
 
 st.title("Database of Handwashing Detection System")
 df = database.reset_index(drop='index')
@@ -12,12 +27,6 @@ df = database.reset_index(drop='index')
 # Display the DataFrame
 # st.dataframe(df)
 
-st.title("Streamlit Reboot Button Example")
-    # Reboot button
-    if st.button("Reboot"):
-        st.write("Rebooting...")
-        restart_streamlit()
-        
 # Add a text input for column selection
 column_to_search = st.selectbox("Select a column to search:", database.columns[1:])
 
