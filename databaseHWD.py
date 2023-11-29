@@ -23,6 +23,7 @@ def GetDataFromFirebase(JSON_DB_File:str="database-of-hwd-durations-firebase-adm
     df = pd.DataFrame(data)
     df = df.rename_axis('Time').reset_index()
     df.sort_values(by='Time', inplace=True)
+    df = df.drop(columns=['LED_VAL'])
     return df
 
 database = GetDataFromFirebase()#.fillna("No Detection happended this Time")
