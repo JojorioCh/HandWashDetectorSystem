@@ -1,7 +1,5 @@
 streamlit
 pandas
-sys
-os
 firebase==4.0.1
 firebase-admin==6.2.0
 
