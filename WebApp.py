@@ -1,5 +1,10 @@
 import streamlit as st
 from databaseHWD import *
+import sys
+import os
+
+def restart_streamlit():
+    os.execv(sys.executable, ['python'] + sys.argv)
 
 st.title("Database of Handwashing Detection System")
 df = database.reset_index(drop='index')
@@ -7,6 +12,12 @@ df = database.reset_index(drop='index')
 # Display the DataFrame
 # st.dataframe(df)
 
+st.title("Streamlit Reboot Button Example")
+    # Reboot button
+    if st.button("Reboot"):
+        st.write("Rebooting...")
+        restart_streamlit()
+        
 # Add a text input for column selection
 column_to_search = st.selectbox("Select a column to search:", database.columns[1:])
 
